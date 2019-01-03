@@ -31,4 +31,8 @@ run {
     classpath += files('config/local')
 }
 
+test {
+    useJUnitPlatform()
+}
+
 apply from: 'dependencies.gradle'
