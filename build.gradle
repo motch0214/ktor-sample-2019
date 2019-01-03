@@ -27,4 +27,8 @@ compileTestKotlin {
 
 mainClassName = 'io.ktor.server.netty.EngineMain'
 
+run {
+    classpath += files('config/local')
+}
+
 apply from: 'dependencies.gradle'
