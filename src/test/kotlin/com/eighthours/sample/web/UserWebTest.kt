@@ -51,5 +51,15 @@ class UserWebTest : WebTestBase() {
         ) {
             assertThat(response.status()).isEqualTo(HttpStatusCode.OK)
         }
+
+        url("/user/find").post(
+            """
+            {
+                "id": "test-user"
+            }
+            """
+        ) {
+            assertThat(response.status()).isEqualTo(HttpStatusCode.NotFound)
+        }
     }
 }
