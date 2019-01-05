@@ -20,7 +20,9 @@ data class User(
     val metaInfo: MetaInfo,
 
     @Version
-    val version: Int? = null
+    val version: Int? = null,
+
+    val deleted: Boolean = false
 ) {
     @Transient
     var roleIds: List<StringId<Role>>? = null

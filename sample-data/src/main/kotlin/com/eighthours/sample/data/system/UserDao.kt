@@ -22,9 +22,6 @@ interface UserDao {
     @Update
     fun update(user: User): Result<User>
 
-    @Delete
-    fun delete(user: User): Result<User>
-
     data class UserRoleRelation(val userSk: LongId<User>, val roleId: StringId<Role>)
 
     @Select
@@ -32,4 +29,7 @@ interface UserDao {
 
     @BatchInsert(sqlFile = true)
     fun insertRoleRelations(relations: List<UserRoleRelation>): IntArray
+
+    @Delete(sqlFile = true)
+    fun deleteRoleRelations(sk: LongId<User>): Int
 }

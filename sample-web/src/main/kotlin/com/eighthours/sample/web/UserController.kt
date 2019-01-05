@@ -25,11 +25,22 @@ class UserController(kodein: Kodein) {
     data class Find(val id: StringId<User>)
 
     data class FindResponse(
-        val id: StringId<User>, val name: String, val status: UserStatus, val roles: List<StringId<Role>>
+        val id: StringId<User>, val name: String, val status: UserStatus, val roles: List<StringId<Role>>,
+        val version: Int
     )
 
     fun find(request: Find): FindResponse = transaction.apply {
-        val user = repository.find(request.id) ?: throw BusinessException("The user not exists: ${request.id}")
-        FindResponse(user.id, user.name, user.status, user.roleIds ?: emptyList())
+        val user = repository.find(request.id) ?: throw BusinessException("User not exists: ${request.id}")
+        FindResponse(
+            user.id, user.name, user.status, user.roleIds ?: emptyList(), user.version ?: 0
+        )
+    }
+
+    data class Delete(val id: StringId<User>, val version: Int)
+
+    fun delete(request: Delete): MessageResponse = transaction.apply {
+        val user = repository.find(request.id) ?: throw BusinessException("User not exists: ${request.id}")
+        repository.update(user.copy(deleted = true))
+        MessageResponse("The user has been deleted successfully: ${user.id}")
     }
 }

@@ -23,7 +23,8 @@ allprojects {
 }
 
 dependencies {
-    implementation project(':sample-service-common')
+    testImplementation project(':sample-system-domain')
+    testImplementation project(':sample-service-common')
     implementation project(':sample-data')
     implementation project(':sample-web')
 

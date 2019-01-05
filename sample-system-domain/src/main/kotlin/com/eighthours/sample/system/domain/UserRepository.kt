@@ -7,4 +7,6 @@ interface UserRepository {
     fun find(id: StringId<User>): User?
 
     fun create(id: StringId<User>, name: String, roleIds: List<StringId<Role>>): User
+
+    fun update(user: User, roleIds: List<StringId<Role>>? = null): User
 }

@@ -38,4 +38,24 @@ class UserRepositoryImpl(kodein: Kodein) : UserRepository {
 
         return user.also { it.roleIds = roleIds }
     }
+
+    override fun update(user: User, roleIds: List<StringId<Role>>?): User {
+        val (updated, _) = dao.update(
+            user.copy(
+                metaInfo = user.metaInfo.copy(
+                    updatedUserSk = LongId(0),
+                    updatedDatetime = LocalDateTime.now()
+                )
+            )
+        )
+
+        if (roleIds == null) {
+            return updated.also { it.roleIds = user.roleIds }
+        }
+
+        dao.deleteRoleRelations(user.sk!!)
+        dao.insertRoleRelations(roleIds.map { UserDao.UserRoleRelation(user.sk!!, it) })
+
+        return updated.also { it.roleIds = roleIds }
+    }
 }
