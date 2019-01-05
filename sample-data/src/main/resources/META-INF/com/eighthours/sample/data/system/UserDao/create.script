@@ -9,3 +9,9 @@ create or replace table APP_USER (
     updated_datetime timestamp,
     version numeric(10)
 );
+
+
+create or replace table USER_ROLE_RELATION (
+    user_sk numeric(10),
+    role_id varchar2(100)
+);

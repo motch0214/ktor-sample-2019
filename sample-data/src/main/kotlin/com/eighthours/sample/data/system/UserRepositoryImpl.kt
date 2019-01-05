@@ -12,7 +12,9 @@ class UserRepositoryImpl(kodein: Kodein) : UserRepository {
     private val dao: UserDao by kodein.instance()
 
     override fun find(id: StringId<User>): User? {
-        return dao.selectById(id)
+        val user = dao.selectById(id) ?: return null
+        user.roleIds = dao.selectRoleRelations(user.sk!!)
+        return user
     }
 
     override fun create(id: StringId<User>, name: String, roleIds: List<StringId<Role>>): User {
@@ -29,6 +31,11 @@ class UserRepositoryImpl(kodein: Kodein) : UserRepository {
                 )
             )
         )
-        return user
+
+        dao.insertRoleRelations(roleIds.map {
+            UserDao.UserRoleRelation(user.sk!!, it)
+        })
+
+        return user.also { it.roleIds = roleIds }
     }
 }

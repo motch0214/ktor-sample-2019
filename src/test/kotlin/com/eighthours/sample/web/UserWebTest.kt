@@ -35,8 +35,8 @@ class UserWebTest : WebTestBase() {
             val content = JsonParser().parse(response.content).asJsonObject
             assertThat(content["id"].asString).isEqualTo("test-user")
             assertThat(content["name"].asString).isEqualTo("Test User")
-//            val roles = content["roles"].asJsonArray.map { it.asString }
-//            assertThat(roles).containsExactlyInAnyOrder("A", "B")
+            val roles = content["roles"].asJsonArray.map { it.asString }
+            assertThat(roles).containsExactlyInAnyOrder("A", "B")
         }
     }
 }

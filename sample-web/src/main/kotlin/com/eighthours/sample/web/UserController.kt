@@ -18,7 +18,7 @@ class UserController(kodein: Kodein) {
     data class Create(val id: StringId<User>, val name: String, val roles: List<StringId<Role>>)
 
     fun create(request: Create): MessageResponse = transaction.apply {
-        val user = repository.create(request.id, request.name, listOf())
+        val user = repository.create(request.id, request.name, request.roles)
         MessageResponse("The user has been created successfully: ${user.id}")
     }
 
