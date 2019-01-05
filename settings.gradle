@@ -1,1 +1,9 @@
 rootProject.name = 'ktor-sample'
+
+include 'sample-domain-common'
+include 'sample-system-domain'
+
+include 'sample-service-common'
+
+include 'sample-data'
+include 'sample-web'

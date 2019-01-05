@@ -1,14 +1,45 @@
-dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+ext {
+    ktor_version = '1.1.1'
+    junit_version = '5.3.2'
+    kodein_version = '6.0.1'
+    doma_version = '2.20.0'
+    typesafe_version = '1.3.1'
+    gson_version = '2.8.5'
+}
 
+allprojects {
+    dependencies {
+        // Kotlin
+        implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+
+        // Unit testing
+        testImplementation "org.junit.jupiter:junit-jupiter-api:$junit_version"
+        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit_version"
+        testImplementation 'org.assertj:assertj-core:3.11.1'
+
+        // Logging
+        implementation 'org.slf4j:slf4j-api:1.7.25'
+    }
+}
+
+dependencies {
+    implementation project(':sample-service-common')
+    implementation project(':sample-data')
+    implementation project(':sample-web')
+
+    // Web Framework
     implementation "io.ktor:ktor-server-core:$ktor_version"
     implementation "io.ktor:ktor-server-netty:$ktor_version"
+    implementation "io.ktor:ktor-gson:$ktor_version"
     testImplementation "io.ktor:ktor-server-test-host:$ktor_version"
 
+    // Logging
     runtimeOnly 'ch.qos.logback:logback-classic:1.2.3'
+    implementation 'org.slf4j:jul-to-slf4j:1.7.25'
 
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.2'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.2'
+    // Database
+    testRuntimeOnly 'com.h2database:h2:1.4.197'
 
-    testImplementation 'com.willowtreeapps.assertk:assertk-jvm:0.12'
+    // Dependency Injection
+    implementation "org.kodein.di:kodein-di-generic-jvm:$kodein_version"
 }

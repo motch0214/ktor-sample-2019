@@ -1,0 +1,11 @@
+create or replace table APP_USER (
+    sk numeric(10) primary key,
+    id varchar2(100),
+    name varchar2(100),
+    status varchar2(30),
+    created_user_sk numeric(10),
+    created_datetime timestamp,
+    updated_user_sk numeric(10),
+    updated_datetime timestamp,
+    version numeric(10)
+);

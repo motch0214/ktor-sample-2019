@@ -1,0 +1,10 @@
+dependencies {
+    implementation "org.seasar.doma:doma:$doma_version"
+
+    // Database Access
+    kapt "org.seasar.doma:doma:$doma_version"
+    implementation "org.seasar.doma:doma:$doma_version"
+
+    // Json
+    implementation "com.google.code.gson:gson:$gson_version"
+}

@@ -1,0 +1,18 @@
+dependencies {
+    implementation project(':sample-domain-common')
+    implementation project(':sample-system-domain')
+    implementation project(':sample-service-common')
+
+    // Database Access
+    kapt "org.seasar.doma:doma:$doma_version"
+    implementation "org.seasar.doma:doma:$doma_version"
+
+    // Data Source
+    implementation 'com.zaxxer:HikariCP:3.1.0'
+
+    // Dependency Injection
+    implementation "org.kodein.di:kodein-di-generic-jvm:$kodein_version"
+
+    // Config Loader
+    implementation "com.typesafe:config:$typesafe_version"
+}

@@ -1,0 +1,7 @@
+dependencies {
+    implementation project(':sample-domain-common')
+
+    // Database Access
+    kapt "org.seasar.doma:doma:$doma_version"
+    implementation "org.seasar.doma:doma:$doma_version"
+}

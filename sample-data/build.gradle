@@ -1,0 +1,9 @@
+apply plugin: 'kotlin-kapt'
+
+kapt {
+    arguments {
+        arg("doma.resources.dir", "$projectDir/src/main/resources")
+    }
+}
+
+apply from: 'dependencies.gradle'
