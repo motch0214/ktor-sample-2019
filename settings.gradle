@@ -4,6 +4,7 @@ include 'sample-domain-common'
 include 'sample-system-domain'
 
 include 'sample-service-common'
+include 'sample-system-service'
 
 include 'sample-data'
 include 'sample-web'

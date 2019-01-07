@@ -1,0 +1,4 @@
+dependencies {
+    implementation project(":sample-domain-common")
+    implementation project(':sample-system-domain')
+}
