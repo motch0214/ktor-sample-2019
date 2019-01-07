@@ -25,12 +25,14 @@ allprojects {
 dependencies {
     testImplementation project(':sample-system-domain')
     testImplementation project(':sample-service-common')
+    implementation project(':sample-system-service')
     implementation project(':sample-data')
     implementation project(':sample-web')
 
     // Web Framework
     implementation "io.ktor:ktor-server-core:$ktor_version"
     implementation "io.ktor:ktor-server-netty:$ktor_version"
+    implementation "io.ktor:ktor-auth:$ktor_version"
     implementation "io.ktor:ktor-gson:$ktor_version"
     testImplementation "io.ktor:ktor-server-test-host:$ktor_version"
 

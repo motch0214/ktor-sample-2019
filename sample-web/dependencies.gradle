@@ -2,6 +2,7 @@ dependencies {
     implementation project(':sample-domain-common')
     implementation project(':sample-system-domain')
     implementation project(':sample-service-common')
+    implementation project(':sample-system-service')
 
     // Dependency Injection
     implementation "org.kodein.di:kodein-di-generic-jvm:$kodein_version"
